@@ -12,6 +12,7 @@ def ingest_gateway_packet(packet,db: Session):
             node_timestamp=node.ts,
             gateway_received_timestamp=
             packet.received_ts,
+            buffered=packet.buffered, 
             tilt_x=node.tilt_x,
             tilt_y=node.tilt_y,
             vib_rms=node.vib_rms,
@@ -25,5 +26,5 @@ def ingest_gateway_packet(packet,db: Session):
 
     return {
         "status": "success",
-        "row_instered": len(readings)
+        "row_inserted": len(readings)
     }
