@@ -9,7 +9,7 @@ class NodeReading(BaseModel):
     vib_rms: float
     flex_raw: int
     crack_ok: bool
-    rssi: Optional[float]
+    rssi: Optional[float] = None
 
 
 class BridgePayload(BaseModel):
