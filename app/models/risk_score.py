@@ -11,5 +11,7 @@ class RiskScore(Base):
     id : Mapped[int] = mapped_column(Integer,primary_key=True)
     node_id: Mapped[str] = mapped_column(String(20))
     score: Mapped[float] = mapped_column(Float)
+    signal: Mapped[str] = mapped_column(String(20))
     severity: Mapped[str] = mapped_column(String(20))
+    node_timestamp: Mapped[int] = mapped_column(BigInteger)         
     timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True),server_default=func.now())
