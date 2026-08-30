@@ -7,9 +7,17 @@ from app.database.base import Base
 class Alert(Base):
     __tablename__ = "alerts"
 
-    id : Mapped[int] = mapped_column(Integer,primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     node_id: Mapped[str] = mapped_column(String(20))
     severity: Mapped[str] = mapped_column(String(20))
+    signal: Mapped[str] = mapped_column(String(20))                    
+                                                                        
+    score: Mapped[float] = mapped_column(Float)                          
+                                                                         
     message: Mapped[str] = mapped_column(String(255))
-    acknowledged: Mapped[bool] = mapped_column(Boolean,default=False)
-    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True),server_default=func.now())
+    acknowledged: Mapped[bool] = mapped_column(Boolean, default=False)   
+    sms_sent: Mapped[bool] = mapped_column(Boolean, default=False)      
+    email_sent: Mapped[bool] = mapped_column(Boolean, default=False)    
+    node_timestamp: Mapped[int] = mapped_column(BigInteger)                                                                              
+    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+                                                                                                                                      
