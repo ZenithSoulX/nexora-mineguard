@@ -1,0 +1,13 @@
+fastapi-env/
+__pycache__/
+.git/
+.gitignore
+.vscode/
+.env
+
+frontend/node_modules/
+frontend/dist/
+
+*.pyc
+*.pyo
+*.DS_Store
