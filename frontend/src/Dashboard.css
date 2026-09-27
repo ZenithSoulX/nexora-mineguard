@@ -1538,3 +1538,10 @@
     display: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Global sidebar alignment. Every page uses the same 256px sidebar now.
+   -------------------------------------------------------------------------- */
+.mg-content-wrapper,.mg-body,.main-wrapper,.alerts-main-wrapper{margin-left:256px;padding-left:0}
+.mg-header,.alerts-header,.app-header{left:256px}
+@media (max-width:768px){.mg-content-wrapper,.mg-body,.main-wrapper,.alerts-main-wrapper{margin-left:72px;padding-left:0}.mg-header,.alerts-header,.app-header{left:72px}}

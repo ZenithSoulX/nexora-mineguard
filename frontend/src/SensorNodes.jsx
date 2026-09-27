@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import "./SensorNodes.css";
 import { fetchLiveData, fetchNodeHistory, fetchRiskHistory } from "./liveData";
+import GlobalSidebar from "./components/GlobalSidebar";
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", icon: LayoutGrid, path: "/" },
@@ -42,38 +43,6 @@ function useUtcClock() {
     return () => clearInterval(id);
   }, []);
   return timestamp;
-}
-
-function Sidebar({ activeItem }) {
-  const navigate = useNavigate();
-  return (
-    <aside className="sidebar">
-      <div className="sidebar-top">
-        <div className="sidebar-brand">
-          <div className="brand-mark"><Shield size={20} strokeWidth={2} /></div>
-          <div className="brand-text">
-            <span className="brand-name">MineGuard</span>
-            <span className="brand-subtitle">Mine Safety Monitoring</span>
-          </div>
-        </div>
-        <nav className="sidebar-nav">
-          {NAV_ITEMS.map((item) => {
-            const Icon = item.icon;
-            const active = item.key === activeItem;
-            return (
-              <button key={item.key} type="button"
-                className={`nav-item${active ? " nav-item-active" : ""}`}
-                onClick={() => navigate(item.path)}
-                aria-current={active ? "page" : undefined}>
-                <span className="nav-item-left"><Icon size={20} strokeWidth={2} /><span>{item.label}</span></span>
-              </button>
-            );
-          })}
-        </nav>
-      </div>
-      <div className="sidebar-footer"><span className="footer-dot" /><span>MineGuard System</span></div>
-    </aside>
-  );
 }
 
 function Header({ timestamp, backendOnline }) {
@@ -357,7 +326,7 @@ export default function SensorNodes() {
 
   return (
     <div className="mineguard-app">
-      <Sidebar activeItem="nodes" />
+      <GlobalSidebar />
       <div className="main-wrapper">
         <Header timestamp={timestamp} backendOnline={backendOnline} />
         <main className="main-content">

@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import "./Dashboard.css";
 import { fetchLiveData } from "./liveData";
+import GlobalSidebar from "./components/GlobalSidebar";
 
 // ---------------------------------------------------------------------------
 // Mock data
@@ -483,29 +484,7 @@ export default function MineGuardDashboard() {
 
   return (
     <div className="mg-app">
-      {/* Sidebar */}
-      <aside className="mg-sidebar">
-        <div>
-          <div className="mg-sidebar__brand">
-            <div className="mg-sidebar__logo">
-              <Shield size={20} strokeWidth={2} />
-            </div>
-            <div className="mg-sidebar__brand-text">
-              <span className="mg-sidebar__brand-title">MineGuard</span>
-              <span className="mg-sidebar__brand-subtitle">Mine Safety Monitoring</span>
-            </div>
-          </div>
-          <nav className="mg-sidebar__nav">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.label}
-                item={item}
-                badge={item.label === "Alerts" ? activeAlerts.length : null}
-              />
-            ))}
-          </nav>
-        </div>
-      </aside>
+      <GlobalSidebar />
 
       <div className="mg-content-wrapper">
         {/* Header */}

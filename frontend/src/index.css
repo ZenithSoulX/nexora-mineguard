@@ -109,3 +109,7 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+
+/* MineGuard app uses a full-width fixed navigation shell. */
+#root{width:100%;max-width:none;margin:0;border-inline:0;text-align:left;min-height:100vh;display:block}

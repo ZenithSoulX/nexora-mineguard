@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import "./LiveMap.css";
 import { fetchLiveData } from "./liveData";
+import GlobalSidebar from "./components/GlobalSidebar";
 
 
 function useUtcClock() {
@@ -70,73 +71,6 @@ function getRssiDescriptor(rssi) {
   if (rssi < -80) return "Weak";
   if (rssi > -65) return "Strong";
   return "Fair";
-}
-
-// ---------------------------------------------------------------------------
-// Sidebar navigation
-// ---------------------------------------------------------------------------
-const NAV_ITEMS = [
-  { key: "dashboard", label: "Dashboard", icon: LayoutGrid, path: "/" },
-  { key: "nodes", label: "Nodes", icon: Radio, path: "/Nodes" },
-  { key: "live-map", label: "Live Map", icon: MapPin, path: "/LiveMap" },
-  { key: "alerts", label: "Alerts", icon: Bell, path: "/Alerts", badge: 2 },
-];
-
-function Sidebar({ activePath, onNavigate, activeAlertCount }) {
-  const navigate = useNavigate();
-  return (
-    <aside className="mg-sidebar">
-      <div className="mg-sidebar-top">
-        <div className="mg-sidebar-brand">
-          <div className="mg-brand-icon">
-            <Shield size={20} />
-          </div>
-          <div className="mg-brand-text">
-            <span className="mg-brand-title mg-text-headline-sm">MineGuard</span>
-            <span className="mg-brand-subtitle mg-text-label-sm">
-              Mine Safety Monitoring
-            </span>
-          </div>
-        </div>
-        <div className="mg-nav-wrap">
-          <nav className="mg-nav">
-            {NAV_ITEMS.map((item) => {
-              const Icon = item.icon;
-              const isActive = item.key === activePath;
-              return (
-                <button
-                  key={item.key}
-                  type="button"
-                  className={`mg-nav-item mg-text-label-lg${isActive ? " active" : ""}`}
-                  onClick={() => {
-                            onNavigate(item.key);
-                            navigate(item.path);
-                  }}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span className="mg-nav-item-content">
-                    <Icon size={20} />
-                    <span>{item.label}</span>
-                  </span>
-                  {item.key === "alerts" && activeAlertCount > 0 ? (
-                    <span className="mg-nav-badge">{activeAlertCount}</span>
-                  ) : null}
-                </button>
-              );
-            })}
-          </nav>
-        </div>
-      </div>
-      <div className="mg-sidebar-footer">
-        <div className="mg-footer-row">
-          <span className="mg-dot" />
-          <span className="mg-text-label-sm" style={{ color: "var(--color-on-surface-variant)" }}>
-            Telemetry Engine v2.4
-          </span>
-        </div>
-      </div>
-    </aside>
-  );
 }
 
 // ---------------------------------------------------------------------------
@@ -420,7 +354,7 @@ export default function LiveMap() {
 
   return (
     <div className="mg-root">
-      <Sidebar activePath={activePath} onNavigate={setActivePath} activeAlertCount={activeAlertCount} />
+      <GlobalSidebar />
       <div className="mg-body">
         <Header timestamp={clock} />
         <main className="mg-main">

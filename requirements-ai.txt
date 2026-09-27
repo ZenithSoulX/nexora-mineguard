@@ -4,7 +4,9 @@ sqlalchemy
 pydantic
 python-dotenv
 psycopg2-binary
+psycopg[binary]
 numpy
 pandas
 scikit-learn
 joblib
+twilio

@@ -7,12 +7,14 @@ from app.api.risk_routes import router as risk_router
 from app.api.dashboard_routes import router as dashboard_router
 from app.api.gis_routes import router as gis_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.simulator_routes import router as simulator_router
 
 app = FastAPI()
 app.include_router(sensor_router)
 app.include_router(node_router)
 app.include_router(alert_router)
 app.include_router(ingestion_router)
+app.include_router(simulator_router)
 app.include_router(risk_router)
 app.include_router(dashboard_router)
 app.include_router(gis_router)

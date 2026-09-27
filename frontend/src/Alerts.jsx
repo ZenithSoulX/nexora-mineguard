@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import "./Alerts.css";
 import { fetchLiveData, acknowledgeAlert as apiAcknowledgeAlert, resolveAlert as apiResolveAlert } from "./liveData";
+import GlobalSidebar from "./components/GlobalSidebar";
 
 /* ------------------------------------------------------------------ */
 /*  Static data                                                        */
@@ -79,57 +80,6 @@ let toastSeq = 1;
 /* ------------------------------------------------------------------ */
 /*  Small presentational pieces                                        */
 /* ------------------------------------------------------------------ */
-
-function Sidebar({ badgeCount }) {
-  const navigate = useNavigate();
-  return (
-    <aside className="alerts-sidebar">
-      <div className="sidebar-top">
-        <div className="sidebar-brand">
-          <div className="brand-mark">
-            <Shield size={20} strokeWidth={2} />
-          </div>
-          <div className="brand-text">
-            <span className="brand-name">MineGuard</span>
-            <span className="brand-subtitle">Mine Safety Monitoring</span>
-          </div>
-        </div>
-
-        <nav className="sidebar-nav">
-          {NAV_ITEMS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <button
-                  key={item.key}
-                  type="button"
-                  className={`nav-item${item.active ? " nav-item-active" : ""}`}
-                  onClick={() => navigate(item.path)}
-                  aria-current={item.active ? "page" : undefined}
-              >
-                <span className="nav-item-left">
-                  <Icon size={20} strokeWidth={2} />
-                  <span>{item.label}</span>
-                </span>
-                {item.key === "alerts" && (
-                  <span
-                    className={`nav-badge${badgeCount === 0 ? " nav-badge-idle" : ""}`}
-                  >
-                    {badgeCount}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
-
-      <div className="sidebar-footer">
-        <span className="footer-dot" />
-        <span>System Online</span>
-      </div>
-    </aside>
-  );
-}
 
 function Header({ timestamp }) {
   return (
@@ -580,7 +530,7 @@ export default function Alerts() {
         ))}
       </div>
 
-      <Sidebar badgeCount={badgeCount} />
+      <GlobalSidebar />
 
       <div className="alerts-main-wrapper">
         <Header timestamp={timestamp} />
